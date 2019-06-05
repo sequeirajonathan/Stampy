@@ -1,0 +1,79 @@
+<?php include('includes/Header.php') ?>
+
+<div class="columns column-pad-marg">
+    <div class="column is-one-fifth">
+        <nav class="panel">
+            <p class="panel-heading">
+                Filter Panel
+            </p>
+            <label class="panel-block">
+                <form action="filter" method="POST">
+                    <div class="field">
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="filter" value="year">
+                                Year
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="filter" value="quantity">
+                                Quantity
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-link">Filter Stamps</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </label>
+
+        </nav>
+
+
+    </div>
+    <div class="column">
+        <table class="table table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr class="font">
+                    <th>Stamp</th>
+                    <th>Quantity</th>
+                    <th>Collection</th>
+                    <th>Stamp Name</th>
+                    <th>Description</th>
+                    <th>Posted</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="font">
+                <?php foreach($stamps as $stamp) { ?>
+                    <td><img class="stamp-img" src="<?= $images . $stamp->image ?>"></td>
+                    <td><?= $stamp->quantity ?></td>
+                    <td><?= $stamp->collection ?></td>
+                    <td><?= $stamp->name ?></td>
+                    <td><?= $stamp->description ?></td>
+                    <td><?= $stamp->posted ?></td>
+                <?php }?>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+        <div class="is-flex">
+            <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</div>
+
+
+<?php include('includes/Footer.php') ?>
