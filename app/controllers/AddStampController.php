@@ -16,7 +16,8 @@ class AddStampController extends Controller
         if ($this->request->hasFiles()) {
             $file = $this->request->getUploadedFiles();
             $imageName = $file[0]->getName();
-            $file[0]->moveTo('images/' . md5($imageName). '.' . $file[0]->getExtension());
+            $fullFile = md5($imageName). '.' . $file[0]->getExtension();
+            $file[0]->moveTo('images/' . $fullFile);
         }
 
         $name = $this->request->get("name");
@@ -27,13 +28,15 @@ class AddStampController extends Controller
         //$posted = $this->request->get("posted");
 
         $addStamp = new Stamps();
-        $addStamp->image = md5($imageName);
+        $addStamp->image = $fullFile;
         $addStamp->year = $year;
+        $addStamp->name = $name;
         $addStamp->quantity = $quantity;
         $addStamp->collection = $collection;
         $addStamp->description = $description;
-        $addStamp->posted = 'true';
+        $addStamp->posted = 1;
         $addStamp->save();
+
 
         $this->response->redirect('stamps');
     }

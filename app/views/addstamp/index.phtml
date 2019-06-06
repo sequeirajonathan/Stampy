@@ -3,7 +3,7 @@
 <body>
     <div class="container margin">
         <form action="addstamp/submit" method="post" enctype="multipart/form-data">
-            
+
             <div class="field">
                 <div class="file has-name is-fullwidth">
                     <label class="file-label">
@@ -17,7 +17,18 @@
                             </span>
                         </span>
                         <span class="file-name">
-                            <?= $filename ?>
+                            <script>
+                            let filename = document.querySelector('.file-name');
+                            document.querySelector('.file-input').onchange = function() {
+                                let realFileName = this.value.split('\\');
+
+                                for (let i = 0; i < realFileName.length; i++) {
+                                    if (realFileName[i].includes(".jpg")) {
+                                        filename.innerHTML = realFileName[i];
+                                    }
+                                }
+                            }
+                            </script>
                         </span>
                     </label>
                 </div>

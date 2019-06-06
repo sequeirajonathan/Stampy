@@ -7,7 +7,7 @@
                 Filter Panel
             </p>
             <label class="panel-block">
-                <form action="filter" method="POST">
+                <form action="stamps" method="GET">
                     <div class="field">
                         <div class="control">
                             <label class="radio">
@@ -48,17 +48,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="font">
                 <?php foreach($stamps as $stamp) { ?>
+                <tr class="font">
                     <td><img class="stamp-img" src="<?= $images . $stamp->image ?>"></td>
                     <td><?= $stamp->quantity ?></td>
                     <td><?= $stamp->collection ?></td>
                     <td><?= $stamp->name ?></td>
                     <td><?= $stamp->description ?></td>
                     <td><?= $stamp->posted ?></td>
-                <?php }?>
+                    <td><a href="stamps/edit/?id=<?= $stamp->id ?>">Edit</a></td>
+                    <td><a href="stamps/delete/?id=<?= $stamp->id ?>">Delete</a></td>
                 </tr>
-                <tr>
+                <?php }?>
             </tbody>
         </table>
         <div class="is-flex">
